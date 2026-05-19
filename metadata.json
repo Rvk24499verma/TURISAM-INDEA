@@ -1,0 +1,9 @@
+{
+  "name": "Copy of Copy of Copy of Copy of Copy of Bharat Yatra AI",
+  "description": "A comprehensive AI-powered Indian tourism companion covering history, culture, temples, and travel logistics for every corner of India.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera",
+    "microphone"
+  ]
+}
