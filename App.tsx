@@ -1310,17 +1310,32 @@ const App: React.FC = () => {
                         { name: 'Manali', tag: 'Mountains', img: 'manali snow mountains' },
                         { name: 'Kerala', tag: 'Nature', img: 'kerala backwaters houseboat' }
                     ].map((place, idx) => (
-                        <button 
-                            key={idx}
-                            onClick={() => {setSearchText(place.name); handleSearch(place.name);}}
-                            className="relative min-w-[140px] h-56 rounded-2xl overflow-hidden shadow-md group text-left"
-                        >
-                            <img src={getSmartImageUrl(place.img)} alt={place.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
-                                <span className="text-xs text-saffron-300 font-medium uppercase tracking-wider mb-1">{place.tag}</span>
-                                <h4 className="text-white font-bold text-lg">{place.name}</h4>
-                            </div>
-                        </button>
+                        <div key={idx} className="flex-shrink-0 flex flex-col gap-3">
+                            <button 
+                                onClick={() => {setSearchText(place.name); handleSearch(place.name);}}
+                                className="relative w-[180px] h-64 rounded-2xl overflow-hidden shadow-md group text-left transition-all hover:shadow-xl"
+                            >
+                                <img src={getSmartImageUrl(place.img)} alt={place.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-4">
+                                    <span className="text-[10px] text-saffron-300 font-bold uppercase tracking-widest mb-1">{place.tag}</span>
+                                    <h4 className="text-white font-bold text-xl drop-shadow-md">{place.name}</h4>
+                                </div>
+                            </button>
+                            <button 
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setBookingHotel({ 
+                                        name: `Grand Stay near ${place.name}`, 
+                                        description: `Experience luxury and comfort in the heart of ${place.name}. Traditional hospitality meets modern amenities.`, 
+                                        type: 'Hotel',
+                                        location: place.name
+                                    });
+                                }}
+                                className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-white dark:bg-stone-900 border border-saffron-100 dark:border-stone-800 rounded-xl text-xs font-bold text-saffron-600 shadow-sm hover:bg-saffron-50 dark:hover:bg-stone-800 transition-all active:scale-95"
+                            >
+                                <Hotel size={14} /> Book Hotel Near This Temple
+                            </button>
+                        </div>
                     ))}
                 </div>
             </section>
